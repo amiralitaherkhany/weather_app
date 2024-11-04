@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:weather_app/features/feature_weather/domain/entities/current_city_entities.dart';
+import 'package:weather_app/features/feature_weather/domain/entities/current_city_entity.dart';
 
 import 'clouds.dart';
 import 'coord.dart';
@@ -10,23 +10,56 @@ import 'sys.dart';
 import 'weather.dart';
 import 'wind.dart';
 
-class CurrentCityModel extends CurrentCityEntities {
-  const CurrentCityModel({
-    super.coord,
-    super.weather,
-    super.base,
-    super.main,
-    super.visibility,
-    super.wind,
-    super.rain,
-    super.clouds,
-    super.dt,
-    super.sys,
-    super.timezone,
-    super.id,
-    super.name,
-    super.cod,
+class CurrentCityModel {
+  final Coord? coord;
+  final String? base;
+  final List<Weather>? weather;
+  final Main? main;
+  final int? visibility;
+  final Wind? wind;
+  final Rain? rain;
+  final Clouds? clouds;
+  final int? dt;
+  final Sys? sys;
+  final int? timezone;
+  final int? id;
+  final String? name;
+  final int? cod;
+
+  CurrentCityModel({
+    required this.coord,
+    required this.base,
+    required this.weather,
+    required this.main,
+    required this.visibility,
+    required this.wind,
+    required this.rain,
+    required this.clouds,
+    required this.dt,
+    required this.sys,
+    required this.timezone,
+    required this.id,
+    required this.name,
+    required this.cod,
   });
+  CurrentCityEntity toEntity() {
+    return CurrentCityEntity(
+      coord: coord,
+      weather: weather,
+      base: base,
+      main: main,
+      visibility: visibility,
+      wind: wind,
+      rain: rain,
+      clouds: clouds,
+      dt: dt,
+      sys: sys,
+      timezone: timezone,
+      id: id,
+      name: name,
+      cod: cod,
+    );
+  }
 
   factory CurrentCityModel.fromMap(Map<String, dynamic> data) {
     return CurrentCityModel(
