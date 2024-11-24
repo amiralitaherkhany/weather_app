@@ -15,10 +15,10 @@ class WeatherRepositoryImpl implements WeatherRepository {
   Future<DataState<CurrentCityEntity>> fetchCurrentWeatherData(
       String cityName) async {
     try {
-      Response response = await _apiProvider.callCurrentWeather(cityName);
+      var response = await _apiProvider.callCurrentWeather(cityName);
       if (response.statusCode == 200) {
         return DataSuccess(
-          CurrentCityModel.fromJson(response.data).toEntity(),
+          CurrentCityModel.fromMap(response.data).toEntity(),
         );
       } else {
         return DataFailed(

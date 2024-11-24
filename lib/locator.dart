@@ -7,7 +7,7 @@ import 'package:weather_app/features/feature_weather/presentation/blocs/home_blo
 
 GetIt locator = GetIt.instance;
 
-void setup() async {
+Future<void> setup() async {
   locator.registerSingleton<ApiProvider>(ApiProvider());
   //repositories
   locator.registerSingleton<WeatherRepository>(
